@@ -1,13 +1,13 @@
 {
   "name": "gsof-simple-async-http",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "a simple async http libaray with request",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gaoshang212/gsof-simple-async-http.git"
   },
-  "main": "index.js",
-  "typings": "index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "test": "node test/test.js"
   },

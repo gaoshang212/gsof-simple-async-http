@@ -66,5 +66,9 @@ jspm_packages
 ## Ignore js
 #*.js
 
+!dist/
+!dist/*.d.ts
+dist/*.js
+
 # End of https://www.gitignore.io/api/node
 
