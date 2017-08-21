@@ -3,6 +3,7 @@ import * as request from 'request'
 export interface options {
     method?: string
     params?: any;
+    headers?: any;
 }
 
 export class http {
@@ -11,9 +12,14 @@ export class http {
 
         let opts: request.CoreOptions = {};
         let method = options && options.method;
-        let params = options && options.params;;
+        let params = options && options.params;
+        let headers = options && options.headers;
         if (method) {
             opts.method = method;
+        }
+
+        if (headers) {
+            opts.headers = headers;
         }
 
         let isPost = method && method.toLowerCase() === 'post';
