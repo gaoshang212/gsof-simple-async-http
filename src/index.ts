@@ -4,6 +4,7 @@ export interface options {
     method?: string
     params?: any;
     headers?: any;
+    gzip?: boolean;
 }
 
 export class http {
@@ -20,6 +21,10 @@ export class http {
 
         if (headers) {
             opts.headers = headers;
+        }
+
+        if (options && options.gzip) {
+            opts.gzip = options.gzip;
         }
 
         let isPost = method && method.toLowerCase() === 'post';
