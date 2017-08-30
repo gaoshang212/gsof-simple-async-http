@@ -29,7 +29,7 @@ export class http {
 
         let isPost = method && method.toLowerCase() === 'post';
         if (isPost) {
-            opts.formData = params;
+            opts.form = params;
         } else {
             opts.qs = params;
         }
