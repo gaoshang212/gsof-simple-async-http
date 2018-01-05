@@ -1,6 +1,6 @@
 {
   "name": "gsof-simple-async-http",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "a simple async http libaray with request",
   "repository": {
     "type": "git",
@@ -20,9 +20,9 @@
   "author": "gaoshang",
   "license": "MIT",
   "dependencies": {
-    "request": "^2.81.0"
+    "node-fetch": "^1.7.3"
   },
   "devDependencies": {
-    "@types/request": "^2.0.0"
+    "@types/node-fetch": "^1.6.7"
   }
 }

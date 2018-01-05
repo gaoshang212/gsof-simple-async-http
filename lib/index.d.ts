@@ -1,3 +1,4 @@
+import { Response } from 'node-fetch';
 export interface options {
     method?: string;
     params?: any;
@@ -5,6 +6,6 @@ export interface options {
     gzip?: boolean;
 }
 export declare class http {
-    static request(uri: string, options?: options): Promise<string>;
-    static json(uri: string, options?: options): Promise<any>;
+    static request(uri: string, options?: options): Promise<Response>;
+    static json<T>(uri: string, options?: options): Promise<T>;
 }

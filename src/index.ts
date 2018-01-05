@@ -1,4 +1,5 @@
-import * as request from 'request'
+import fetch, { RequestInit, Response } from 'node-fetch'
+import * as qs from 'querystring';
 
 export interface options {
     method?: string
@@ -9,46 +10,28 @@ export interface options {
 
 export class http {
 
-    public static request(uri: string, options?: options): Promise<string> {
+    public static async  request(uri: string, options?: options): Promise<Response> {
 
-        let opts: request.CoreOptions = {};
-        let method = options && options.method;
         let params = options && options.params;
-        let headers = options && options.headers;
-        if (method) {
-            opts.method = method;
+        let opts: RequestInit = {
+            method: options && options.method,
+            headers: options && options.headers,
+            compress: true && options && options.gzip,
+        };
+
+        let url = uri;
+        if (opts.method === 'get') {
+            url = `${uri}?${qs.stringify(options.params)}`;
+        } else if (opts.method === 'post') {
+            opts.body = qs.stringify(options.params);
+            opts.headers['Content-Type'] = 'application/x-www-form-urlencoded';
         }
 
-        if (headers) {
-            opts.headers = headers;
-        }
-
-        if (options && options.gzip) {
-            opts.gzip = options.gzip;
-        }
-
-        let isPost = method && method.toLowerCase() === 'post';
-        if (isPost) {
-            opts.form = params;
-        } else {
-            opts.qs = params;
-        }
-
-        let promise = new Promise<string>((resolve, reject) => {
-            request(uri, opts, (err, rep, body) => {
-                if (err) {
-                    reject(err);
-                    return;
-                }
-                resolve(body);
-            })
-        });
-
-        return promise;
+        return await fetch(url, opts);
     }
 
-    public static async json(uri: string, options?: options): Promise<any> {
+    public static async json<T>(uri: string, options?: options): Promise<T> {
         let body = await http.request(uri, options);
-        return JSON.parse(body);
+        return await body.json() as T;
     }
 }
