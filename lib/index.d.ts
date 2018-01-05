@@ -8,4 +8,5 @@ export interface options {
 export declare class http {
     static request(uri: string, options?: options): Promise<Response>;
     static json<T>(uri: string, options?: options): Promise<T>;
+    static text(uri: string, options?: options): Promise<string>;
 }

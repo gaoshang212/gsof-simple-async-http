@@ -34,4 +34,9 @@ export class http {
         let body = await http.request(uri, options);
         return await body.json() as T;
     }
+
+    public static async text(uri: string, options?: options): Promise<string> {
+        let body = await http.request(uri, options);
+        return await body.text();
+    }
 }
